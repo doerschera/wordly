@@ -1,0 +1,26 @@
+{
+  "name": "wordly",
+  "version": "1.0.0",
+  "description": "word finding app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doerschera/wordly.git"
+  },
+  "author": "Aly Doerscher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doerschera/wordly/issues"
+  },
+  "homepage": "https://github.com/doerschera/wordly#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.6",
+    "mysql": "^2.12.0"
+  }
+}
