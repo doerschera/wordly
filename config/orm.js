@@ -1,5 +1,28 @@
 var connection = require('./connection.js');
 
+function printQuestionMarks(num) {
+	var values = [];
+
+	for (var i = 0; i < num; i++) {
+		values.push('?');
+	}
+
+	return values.toString();
+}
+
+function objToSql(object) {
+	// column1=value, column2=value2,...
+	var set = [];
+
+	for (var key in object) {
+		if (object.hasOwnProperty(key)) {
+			set.push(key + '=' + object[key]);
+		}
+	}
+
+	return set.toString();
+}
+
 var orm = {
   selectAll: function(table, callback) {
     var query= 'SELECT * FROM '+table;
@@ -8,37 +31,34 @@ var orm = {
       callback(result);
     })
   },
-  selectType: function(table, type, callback) {
+  selectType: function(table, condition, callback) {
     var query= 'SELECT * FROM '+table+' WHERE ?';
-    connection.query(query, {type: type}, function(err, result) {
+    connection.query(query, condition, function(err, result) {
       if(err) throw err;
       callback(result);
     })
   },
-  like: function(table, id, callback) {
-    var query = 'UPDATE '+table+' SET likes = likes+1 WHERE ?';
-    connection.query(query, {id: id}, function(err, result) {
+  update: function(table, set, condition, callback) {
+    var setValues = objToSql(set);
+    var query = 'UPDATE '+table+' SET '+setValues+'WHERE ?';
+    connection.query(query, condition, function(err, result) {
       if(err) throw err;
       callback(result);
     })
   },
-  addWord: function(table, word, defintion, type, callback) {
-    var query = 'INSERT INTO '+table+' (word, definition, type, likes) VALUES (?, ?, ?, 0)';
-    connection.query(query, [word, definition, type], function(err, result) {
+  add: function(table, cols, values, callback) {
+    cols.toString();
+    var valuesQuest = printQuestionMarks(values.length);
+    var query = 'INSERT INTO '+table+' ('+cols+') VALUES ('+valuesQuest+')';
+
+    connection.query(query, values, function(err, result) {
       if(err) throw err;
       callback(result);
     })
   },
-  updateWord: function(table, id, word, defintion, type, callback) {
-    var query = 'UPDATE '+table+' SET ? WHERE id=?';
-    connection.query(query, [{word: word, defintion: defintion, type: type}, id], function(err, result) {
-      if(err) throw err;
-      callback(result);
-    })
-  },
-  deleteWord: function(table, id, callback) {
+  deleteWord: function(table, condition, callback) {
     var query = 'DELETE FROM '+table+' WHERE ?';
-    connection.query(query, {id: id}, function(err, result) {
+    connection.query(query, condition, function(err, result) {
       if(err) throw err;
       callback(result);
     })
