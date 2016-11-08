@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <!-- Google Icons -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Local style sheet -->
+    <link rel="stylesheet" href="/css/master.css" media="screen" title="no title">
+    <title>Wordly</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col s10">
+          <div class="card-wrapper col s6">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Lilt</span>
+                <p class="defintion">
+                  cheerful or buoyant song or movement
+                </p>
+                <p class="type">
+                  noun
+                </p>
+                <i class="material-icons">favorite border</i>
+              </div>
+            </div>
+          </div>
+          <div class="card-wrapper col s6">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Lilt</span>
+                <p class="defintion">
+                  cheerful or buoyant song or movement
+                </p>
+                <p class="type">
+                  noun
+                </p>
+                <i class="material-icons">favorite border</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s2">
+          <div class="side-bar" style="border-left: solid 1px grey; height: 100vh; position: fixed; top: 0">
+            <div>
+              <h1 class="title"><em>Wordly.</em></h1>
+              <p class="tagline">
+                find a word, leave a word
+              </p>
+            </div>
+            <div class="filter">
+              <h5>Show me:</h5>
+              <form>
+                <select name="type" style="display: block;">
+                  <option value="all" selected>all</option>
+                  <option value="adjective">adjective</option>
+                  <option value="noun">noun</option>
+                  <option value="verb">verb</option>
+                  <option value="adverb">adverb</option>
+                </select>
+              </form>
+            </div>
+            <div class="add">
+              <form>
+                <input type="text" name="name" value="" id="word">
+                <label for="word">word</label>
+                <input type="text" name="name" value="" id="defintion"></input>
+                <label for="defintion">defition</label>
+                <select name="type" style="display: block;">
+                  <option value="adjective" selected>adjective</option>
+                  <option value="noun">noun</option>
+                  <option value="verb">verb</option>
+                  <option value="adverb">adverb</option>
+                </select>
+                <button type="button" class="btn" name="button">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
