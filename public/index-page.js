@@ -48,7 +48,7 @@ $(document).ready(function() {
   })
 
   $(document).on('click', '#cards', function() {
-    $('.sidebar').animate({right: '-33.333%'}, 750, function() {
+    $('.sidebar').animate({right: '-50%'}, 750, function() {
       $('.filter, .main, .nav').css('opacity', '1');
     });
     $('.sidebar').fadeOut(750);

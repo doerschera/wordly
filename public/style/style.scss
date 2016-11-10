@@ -153,10 +153,10 @@ button {
 }
 
 .sidebar {
+  overflow: auto;
   position: absolute;
   top: 0px;
-  right: -33.333%;
-  width: 33.333%;
+  right: -50%;
   height: 100vh;
   padding: 40px;
   background-color: white;
@@ -213,7 +213,3 @@ select {
 #doneButton {
   margin-top: 50px;
 }
-
-// .filter, .main, .nav {
-//   opacity: 0.5;
-// }
