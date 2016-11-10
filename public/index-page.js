@@ -40,6 +40,7 @@ $(document).ready(function() {
   })
 
   // sidebar animation
+  var currentUrl = window.location.origin;
   $('#favorites, #add').on('click', function() {
     $('.sidebar').fadeIn(750);
     $('.sidebar').animate({right: '0px'}, 750, function() {

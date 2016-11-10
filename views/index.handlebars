@@ -12,7 +12,9 @@
     </div>
     <div class="col s4 valign">
       <ul class="no-margin">
-        <li id="favorites"><i class='pointer material-icons'>favorite</i></li>
+        <li id="favorites">
+          <i class='pointer material-icons'>favorite</i>
+        </li>
         <li id="add"><i class='pointer material-icons'>add</i></li>
       </ul>
     </div>
@@ -27,24 +29,24 @@
 <!-- filter -->
 <section class="filter">
   <div class="disable center" id="filter">
-    <form class="">
+    <form action="/filter" method="POST">
       <p class="filterby inline">
-        <input class="checkbox" type="checkbox" id="adj" />
+        <input class="checkbox" type="checkbox" id="adj" value="adjective" name="filter"/>
         <label for="adj">adjective</label>
       </p>
       <p class="filterby inline">
-        <input class="checkbox" type="checkbox" id="noun" />
+        <input class="checkbox" type="checkbox" id="noun" value="noun" name="filter"/>
         <label for="noun">noun</label>
       </p>
       <p class="filterby inline">
-        <input class="checkbox" type="checkbox" id="verb" />
+        <input class="checkbox" type="checkbox" id="verb" value="verb" name="filter"/>
         <label for="verb">verb</label>
       </p>
       <p class="filterby inline">
-        <input class="checkbox" type="checkbox" id="adverb" />
+        <input class="checkbox" type="checkbox" id="adverb" value="adverb" name="filter"/>
         <label for="adverb">adverb</label>
       </p>
-      <button type="button" class="inline" name="button" id="filterButton">submit</button>
+      <button type="submit" class="inline" name="button" id="filterButton">submit</button>
     </form>
   </div>
 </section>
@@ -52,8 +54,9 @@
 <!-- sidebar -->
 <section>
   <div class="sidebar disable z-depth-3 col s6 l4">
+    {{#if sidebar.add}}
     <!-- add word form -->
-    <div class="disable">
+    <div>
       <h3 class="title">Submit a word.</h3>
       <div class="add-word">
         <form class="">
@@ -81,6 +84,7 @@
         </p>
       </div>
     </div>
+    {{/if}}
     <!-- word update delete -->
     <div class="disable">
       <h3 class="title">You've added:</h3>
@@ -102,7 +106,8 @@
       <button type="button" name="button" id="doneButton">done</button>
     </div>
     <!-- Favorite Words -->
-    <div class="">
+    {{#if sidebar.favorites}}
+    <div>
       <h3 class="title">Favorites.</h3>
       <div class="card">
         <div class="card-content">
@@ -139,6 +144,7 @@
       </div>
     </div>
   </div>
+  {{/if}}
 </section>
 
 <!-- main content -->

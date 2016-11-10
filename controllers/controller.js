@@ -2,18 +2,28 @@ var express = require('express');
 var router = express.Router();
 var model = require('../models/wordly.js');
 
-
+var sidebar = {
+  add: false,
+  favorties: false
+}
+var currentData;
 
 router.get('/', function(req, res) {
-  model.selectAll(function(response) {
-    console.log(response);
-    var data = {words: response}
+  model.selectAll(function(result) {
+    var data = {words: result}
     res.render('index', data);
   })
 })
 
-// router.get('/submit', function(req, res) {
-//   res.render('submit');
-// })
+router.post('/filter', function(req, res) {
+  var type = req.body.filter;
+  console.log(type);
+  model.selectType(type, function(result) {
+    var data = {words: result};
+    res.render('index', data);
+  })
+})
+
+
 
 module.exports = router;
