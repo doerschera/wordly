@@ -105,6 +105,14 @@ button {
   padding: 30px;
   margin-bottom: 50px; }
 
+.card .card-content .card-title {
+  line-height: 0px; }
+
+.card .card-content p:nth-child(even) {
+  color: #9e9e9e; }
+.card .card-content p:nth-child(odd) {
+  margin-top: 20px; }
+
 .like {
   position: absolute;
   bottom: 20px;

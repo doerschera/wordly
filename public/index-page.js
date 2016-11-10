@@ -40,14 +40,14 @@ $(document).ready(function() {
   })
 
   // sidebar animation
-  $('#favorite, #add').on('click', function() {
+  $('#favorites, #add').on('click', function() {
     $('.sidebar').fadeIn(750);
     $('.sidebar').animate({right: '0px'}, 750, function() {
       $('.filter, .main, .nav').css('opacity', '0.5');
     });
   })
 
-  $(document).on('click', '.main', function() {
+  $(document).on('click', '#cards', function() {
     $('.sidebar').animate({right: '-33.333%'}, 750, function() {
       $('.filter, .main, .nav').css('opacity', '1');
     });
