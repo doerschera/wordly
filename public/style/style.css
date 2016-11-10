@@ -113,7 +113,7 @@ button {
 .sidebar {
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: -33.333%;
   width: 33.333%;
   height: 100vh;
   padding: 40px;

@@ -39,4 +39,12 @@ $(document).ready(function() {
     $('#buttonInfo').slideUp();
   })
 
+  // sidebar animation
+  $('#favorite, #add').on('click', function() {
+    $('.sidebar').fadeIn(750);
+    $('.sidebar').animate({right: '0px'}, 750, function() {
+      $('.filter, .main, .nav').css('opacity', '0.5');
+    });
+  })
+
 })
