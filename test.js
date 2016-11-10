@@ -1,5 +1,14 @@
-var model = require('./models/wordly.js');
+function printOr(array) {
+	var conditions = []
+	array.forEach(function(item, i) {
+    if(i < (array.length-1)) {
+    conditions.push('type='+item+' OR');
+  } else {
+    conditions.push('type='+item);
+  }
+	})
 
-model.selectAll(function(result) {
-  console.log(result);
-})
+	console.log(conditions.toString());
+}
+
+printOr(['verb', 'noun']);

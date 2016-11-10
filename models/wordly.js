@@ -11,6 +11,11 @@ var model = {
       callback(result);
     })
   },
+  filterMany: function(condition, callback) {
+    orm.filterMany('words', condition, function(result) {
+      callback(result);
+    })
+  },
   like: function(condition, callback) {
     orm.update('words', {likes: 'likes+1'}, condition, function(result) {
       callback(result);

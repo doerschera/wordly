@@ -18,6 +18,14 @@ router.get('/', function(req, res) {
 router.post('/filter', function(req, res) {
   var type = req.body.filter;
   console.log(type);
+  if(type.typeof != 'string') {
+    model.filterMany(type, function(result) {
+      var data = {words: result};
+      res.render('index', data);
+    })
+    return false;
+  }
+
   model.selectType(type, function(result) {
     var data = {words: result};
     res.render('index', data);
