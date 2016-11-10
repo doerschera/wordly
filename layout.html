@@ -15,12 +15,12 @@
     <div class="nav">
       <div class="no-margin row valign-wrapper">
         <div class="col s4 valign">
-          <h3 class="inline no-margin title">Wordly.</h3>
+          <h3 class="inline no-margin title">Word.ly</h3>
         </div>
-        <div class="center col s4" id="dropdown">
-          <p class="pointer inline no-margin relative center">
+        <div class="center col s4">
+          <p class="pointer inline no-margin relative center dropdown">
             Filter
-            <i class='pointer material-icons menu-button'>arrow_drop_down</i>
+            <i class='pointer material-icons menu-button dropdown' id="droparrow">arrow_drop_down</i>
           </p>
         </div>
         <div class="col s4 valign">
@@ -29,7 +29,7 @@
             <li id="add"><i class='pointer material-icons'>add</i></li>
           </ul>
         </div>
-        <div class="message disable">
+        <div class="message disable" id="buttonInfo">
           <p>
             view favorites
           </p>
@@ -37,8 +37,8 @@
       </div>
     </div>
 
-    <section>
-      <div class="filter center">
+    <section class="filter">
+      <div class="disable center" id="filter">
         <form class="">
           <p class="filterby inline">
             <input class="checkbox" type="checkbox" id="adj" />
@@ -62,7 +62,38 @@
     </section>
 
     <section>
-      <div class="row">
+      <div class="sidebar disable z-depth-3">
+        <h3 class="title">Submit a word.</h3>
+        <div class="add-word">
+          <form class="">
+            <div class="">
+              <label for="word">Enter your word:</label>
+              <input type="text" name="name" value="" id="word">
+            </div>
+            <div class="">
+              <label for="definition">Add a breif definition:</label>
+              <input type="text" name="name" value="" id="definition">
+            </div>
+            <div class="">
+              <label for="wordType">Select word type:</label>
+              <select class="browser-default" id="wordType">
+                <option value="adjective">adjective</option>
+                <option value="adverb">adverb</option>
+                <option value="noun">noun</option>
+                <option value="verb">verb</option>
+              </select>
+            </div>
+            <button type="button" name="button" id="addButton">submit</button>
+          </form>
+          <p id="formError">
+            error message
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="row" id="cards">
         <div class="main col s12">
           <div class="card-wrapper col s6 l4">
             <div class="card">
@@ -75,7 +106,7 @@
                   cheerful or buoyant song or movement
                 </p>
                 <div class="like valign-wrapper">
-                  <i class="pointer material-icons valign">favorite_border
+                  <i class="heart pointer material-icons valign">favorite_border
                   </i>
                   <p class="counter valign">12</p>
                 </div>
@@ -93,7 +124,7 @@
                   glowing radiant brilliant zealous
                 </p>
                 <div class="like valign-wrapper">
-                  <i class="pointer material-icons valign">favorite_border
+                  <i class="heart pointer material-icons valign">favorite_border
                   </i>
                   <p class="counter valign">2</p>
                 </div>
@@ -104,5 +135,9 @@
       </div>
     </section>
 
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- local jquery -->
+    <script src="./public/index-page.js" charset="utf-8"></script>
   </body>
 </html>
