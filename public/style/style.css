@@ -21,7 +21,7 @@ body {
 
 .main {
   padding: 50px;
-  margin-top: 50px; }
+  margin-top: 120px; }
 
 .title {
   font-family: "Lobster Two", Helvetica, serif; }
@@ -40,6 +40,7 @@ i {
   cursor: pointer; }
 
 .nav {
+  position: fixed;
   width: 100vw;
   padding: 20px;
   padding-bottom: 3px;
@@ -77,6 +78,11 @@ i {
   bottom: -5px;
   color: black;
   vertical-align: baseline; }
+
+#filter {
+  position: relative;
+  top: 70px;
+  width: 100%; }
 
 #filterButton {
   border: solid 2px #666666;

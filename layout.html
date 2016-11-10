@@ -17,10 +17,10 @@
         <div class="col s4 valign">
           <h3 class="inline no-margin title">Wordly.</h3>
         </div>
-        <div class="center col s4" id="dropdown">
-          <p class="pointer inline no-margin relative center">
+        <div class="center col s4">
+          <p class="pointer inline no-margin relative center dropdown">
             Filter
-            <i class='pointer material-icons menu-button'>arrow_drop_down</i>
+            <i class='pointer material-icons menu-button dropdown' id="droparrow">arrow_drop_down</i>
           </p>
         </div>
         <div class="col s4 valign">
@@ -38,7 +38,7 @@
     </div>
 
     <section>
-      <div class="filter center">
+      <div class="disable center" id="filter">
         <form class="">
           <p class="filterby inline">
             <input class="checkbox" type="checkbox" id="adj" />
@@ -104,5 +104,9 @@
       </div>
     </section>
 
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- local jquery -->
+    <script src="./public/index-page.js" charset="utf-8"></script>
   </body>
 </html>
