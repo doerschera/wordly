@@ -109,7 +109,7 @@ i {
   width: 100%;
 }
 
-#filterButton {
+button {
   border: solid 2px #666666;
   background-color: white;
 }
@@ -138,3 +138,47 @@ i {
   bottom: 20px;
   right: 30px;
 }
+
+.sidebar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 33.333%;
+  height: 100vh;
+  padding: 40px;
+  background-color: white;
+  z-index: 4;
+  .title {
+    margin-bottom: 40px;
+  }
+  label {
+    display: block;
+  }
+}
+
+input[type='text'] {
+  width: 100%;
+  border-bottom-color: black;
+  height: 40px;
+  margin-bottom: 50px;
+}
+
+input[type=text]:focus:not([readonly]) {
+  border-bottom-color: black;
+  box-shadow: 0 1px 0 0 #9e9e9e;
+}
+
+select {
+  margin-bottom: 50px;
+  &:focus {
+    outline: none;
+  }
+}
+
+#addButton {
+  border: solid 1px black;
+}
+
+// .filter, .main, .nav {
+//   opacity: 0.5;
+// }

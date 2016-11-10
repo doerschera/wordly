@@ -22,4 +22,21 @@ $(document).ready(function() {
     $(this).html('favorite');
   })
 
+  // navigation buttons
+  $('#favorites').on('mouseenter', function() {
+    $('#buttonInfo > p').html('view favorites');
+    $('#buttonInfo').slideDown();
+  })
+  $('#favorites').on('mouseleave', function() {
+    $('#buttonInfo').slideUp();
+  })
+
+  $('#add').on('mouseenter', function() {
+    $('#buttonInfo > p').html('add a word');
+    $('#buttonInfo').slideDown();
+  })
+  $('#add').on('mouseleave', function() {
+    $('#buttonInfo').slideUp();
+  })
+
 })
