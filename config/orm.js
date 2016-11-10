@@ -1,5 +1,6 @@
 var connection = require('./connection.js');
 
+// print correct number of question marks for INSERT INTO
 function printQuestionMarks(num) {
 	var values = [];
 
@@ -10,8 +11,8 @@ function printQuestionMarks(num) {
 	return values.toString();
 }
 
+// take object and change to SET syntax
 function objToSql(object) {
-	// column1=value, column2=value2,...
 	var set = [];
 
 	for (var key in object) {
@@ -56,7 +57,7 @@ var orm = {
       callback(result);
     })
   },
-  deleteWord: function(table, condition, callback) {
+  delete: function(table, condition, callback) {
     var query = 'DELETE FROM '+table+' WHERE ?';
     connection.query(query, condition, function(err, result) {
       if(err) throw err;

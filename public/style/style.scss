@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two|Cormorant+Garamond:300,400');
+@import "helpers/variables.scss";
+
+body {
+  font-family: $body-font;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.center {
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.disable {
+  display: none;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.main {
+  padding: 50px;
+  margin-top: 50px;
+}
+
+.title {
+  font-family: $title-font;
+}
+
+p {
+  font-family: $body-font;
+  font-size: 14px;
+}
+
+li {
+  display: inline-block;
+}
+
+i {
+  color: #c2c2c2;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+.nav {
+  width: 100vw;
+  padding: 20px;
+  padding-bottom: 3px;
+  border-bottom: solid 1px black;
+  h3 {
+    float: left;
+    display: inline-block;
+  }
+  p {
+    clear: both;
+    font-size: 16px;
+    line-height: 16px;
+    margin-top: 27px;
+    font-weight: 300;
+  }
+  ul {
+    float: right;
+    li {
+      height: 34px;
+      width: 34px;
+      border-radius: 100%;
+      border: solid 1px #c2c2c2;
+      text-align: center;
+      padding-top: 4px;
+      &:nth-child(odd) {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.message {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  color: #c2c2c2;
+}
+
+.menu-button {
+  position: absolute;
+  left: 38px;
+  bottom: -5px;
+  color: black;
+  vertical-align: baseline;
+}
+
+#filterButton {
+  border: solid 2px #666666;
+  background-color: white;
+}
+
+.filterby {
+  margin-right: 40px;
+}
+
+[type=checkbox]+label {
+  padding-left: 25px;
+}
+
+.checkbox:checked + label:before {
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.card {
+  height: 200px;
+  padding: 30px;
+}
+
+.like {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
