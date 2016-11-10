@@ -47,4 +47,11 @@ $(document).ready(function() {
     });
   })
 
+  $(document).on('click', '.main', function() {
+    $('.sidebar').animate({right: '-33.333%'}, 750, function() {
+      $('.filter, .main, .nav').css('opacity', '1');
+    });
+    $('.sidebar').fadeOut(750);
+  })
+
 })
