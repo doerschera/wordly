@@ -24,4 +24,6 @@ app.use('/', routes);
 
 // set up local host
 var PORT = process.env.PORT || 3000;
-app.listen(PORT);
+app.listen(PORT, function() {
+  console.log('listening on port: '+PORT);
+});
