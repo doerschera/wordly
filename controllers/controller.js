@@ -16,9 +16,9 @@ router.get('/', function(req, res) {
 })
 
 router.post('/filter', function(req, res) {
-  var type = req.body.filter;
-  console.log(type);
-  if(type.typeof != 'string') {
+  var wordType = req.body.filter;
+
+  if(typeof wordType != 'string') {
     model.filterMany(type, function(result) {
       var data = {words: result};
       res.render('index', data);
@@ -26,7 +26,7 @@ router.post('/filter', function(req, res) {
     return false;
   }
 
-  model.selectType(type, function(result) {
+  model.selectType(wordType, function(result) {
     var data = {words: result};
     res.render('index', data);
   })
