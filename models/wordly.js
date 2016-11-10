@@ -1,4 +1,4 @@
-var orm = requier('../config/orm.js');
+var orm = require('../config/orm.js');
 
 var model = {
   selectAll: function(callback) {
