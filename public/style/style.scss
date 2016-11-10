@@ -59,6 +59,8 @@ i {
   padding: 20px;
   padding-bottom: 3px;
   border-bottom: solid 1px black;
+  background-color: white;
+  z-index: 3;
   h3 {
     float: left;
     display: inline-block;
@@ -128,6 +130,7 @@ i {
 .card {
   height: 200px;
   padding: 30px;
+  margin-bottom: 50px;
 }
 
 .like {

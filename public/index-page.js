@@ -16,4 +16,10 @@ $(document).ready(function() {
       });
     }
   })
+
+  // favorite button color
+  $('.heart').on('click', function() {
+    $(this).html('favorite');
+  })
+
 })
