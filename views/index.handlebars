@@ -15,7 +15,8 @@
         <li id="favorites">
           <i class='pointer material-icons'>favorite</i>
         </li>
-        <li id="add"><i class='pointer material-icons'>add</i></li>
+        <li id="add">
+          <i class='pointer material-icons'>add</i></li>
       </ul>
     </div>
     <div class="message disable" id="buttonInfo">
@@ -54,9 +55,8 @@
 <!-- sidebar -->
 <section>
   <div class="sidebar disable z-depth-3 col s6 l4">
-    {{#if sidebar.add}}
     <!-- add word form -->
-    <div>
+    <div class="disable" id="addForm">
       <h3 class="title">Submit a word.</h3>
       <div class="add-word">
         <form class="">
@@ -84,7 +84,7 @@
         </p>
       </div>
     </div>
-    {{/if}}
+
     <!-- word update delete -->
     <div class="disable">
       <h3 class="title">You've added:</h3>
@@ -106,8 +106,8 @@
       <button type="button" name="button" id="doneButton">done</button>
     </div>
     <!-- Favorite Words -->
-    {{#if sidebar.favorites}}
-    <div>
+
+    <div class='disable' id="favoriteWords">
       <h3 class="title">Favorites.</h3>
       <div class="card">
         <div class="card-content">
@@ -144,7 +144,7 @@
       </div>
     </div>
   </div>
-  {{/if}}
+
 </section>
 
 <!-- main content -->
