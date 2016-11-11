@@ -52,6 +52,13 @@ router.post('/', function(req, res) {
         res.send(result[0]);
       })
     })
+  } else if(data.type == 'like') {
+    model.like({id: data.id}, function() {
+      model.selectType('id', data.id, function(result) {
+        console.log(result);
+        res.send(result[0]);
+      })
+    })
   }
 })
 

@@ -68,10 +68,10 @@ $(document).ready(function() {
   var isWord = false;
   var hasDef = false;
   var dne = false;
+  var currentUrl = window.location.origin;
 
   $('#word').on('blur', function() {
     var word = $(this).val().trim();
-    var currentUrl = window.location.origin;
     var data = {type: 'validate', word: word};
 
     $.post(currentUrl, data).then(function(response) {
@@ -134,7 +134,6 @@ $(document).ready(function() {
 
   // add word submit button
   $('#addButton').on('click', function() {
-    var currentUrl = window.location.origin;
     var data = {
       type: 'add',
       word: $('#word').val().trim(),
@@ -166,7 +165,16 @@ $(document).ready(function() {
   // like button
   $('.heart').on('click', function() {
     var id = $(this).attr('id');
+    var counter = $(this).siblings('.counter');
     console.log(id);
+    var data = {
+      type: 'like',
+      id: id
+    }
+    $.post(currentUrl, data).then(function(response) {
+      console.log(response);
+      counter.html(response.likes);
+    })
   })
 
 })
