@@ -40,23 +40,12 @@ $(document).ready(function() {
   })
 
   // sidebar animation
-  var currentUrl = window.location.origin;
   $('#add').on('click', function() {
-    $('#addForm').removeClass('disable');
-    $('#favoriteWords').addClass('disable');
-    $('.sidebar').fadeIn(750);
-    $('.sidebar').animate({right: '0px'}, 750, function() {
-      $('.filter, .main, .nav').css('opacity', '0.5');
-    });
+    sidebar('#addForm', '#favoriteWords');
   })
 
   $('#favorites').on('click', function() {
-    $('#favoriteWords').removeClass('disable');
-    $('#addForm').addClass('disable');
-    $('.sidebar').fadeIn(750);
-    $('.sidebar').animate({right: '0px'}, 750, function() {
-      $('.filter, .main, .nav').css('opacity', '0.5');
-    });
+    sidebar('#favoriteWords', '#addForm');
   })
 
   $(document).on('click', '#cards', function() {
@@ -65,6 +54,15 @@ $(document).ready(function() {
     });
     $('.sidebar').fadeOut(750);
   })
+
+  function sidebar(show, hide) {
+    $(show).removeClass('disable');
+    $(hide).addClass('disable');
+    $('.sidebar').fadeIn(750);
+    $('.sidebar').animate({right: '0px'}, 750, function() {
+      $('.filter, .main, .nav').css('opacity', '0.5');
+    });
+  }
 
 
 })
