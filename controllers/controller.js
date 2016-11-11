@@ -26,10 +26,33 @@ router.post('/filter', function(req, res) {
     return false;
   }
 
-  model.selectType(wordType, function(result) {
+  model.selectType('type', wordType, function(result) {
     var data = {words: result};
     res.render('index', data);
   })
+})
+
+router.post('/', function(req, res) {
+  var data = req.body
+  console.log(data);
+  if(data.type == 'validate') {
+    model.selectType('word', data.word, function(result) {
+      console.log(result);
+      if(result.length > 0) {
+        res.send(false);
+      } else {
+        res.send(true);
+      }
+    })
+  } else if(data.type == 'add') {
+    var values = [data.word, data.definition, data.wordType, 0];
+    model.addWord(values, function() {
+      model.selectType('word', data.word, function(result) {
+        console.log(result);
+        res.send(result[0]);
+      })
+    })
+  }
 })
 
 

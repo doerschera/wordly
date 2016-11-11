@@ -40,23 +40,12 @@ $(document).ready(function() {
   })
 
   // sidebar animation
-  var currentUrl = window.location.origin;
   $('#add').on('click', function() {
-    $('#addForm').removeClass('disable');
-    $('#favoriteWords').addClass('disable');
-    $('.sidebar').fadeIn(750);
-    $('.sidebar').animate({right: '0px'}, 750, function() {
-      $('.filter, .main, .nav').css('opacity', '0.5');
-    });
+    sidebar('#addForm', '#favoriteWords');
   })
 
   $('#favorites').on('click', function() {
-    $('#favoriteWords').removeClass('disable');
-    $('#addForm').addClass('disable');
-    $('.sidebar').fadeIn(750);
-    $('.sidebar').animate({right: '0px'}, 750, function() {
-      $('.filter, .main, .nav').css('opacity', '0.5');
-    });
+    sidebar('#favoriteWords', '#addForm');
   })
 
   $(document).on('click', '#cards', function() {
@@ -64,6 +53,114 @@ $(document).ready(function() {
       $('.filter, .main, .nav').css('opacity', '1');
     });
     $('.sidebar').fadeOut(750);
+  })
+
+  function sidebar(show, hide) {
+    $(show).removeClass('disable');
+    $(hide).addClass('disable');
+    $('.sidebar').fadeIn(750);
+    $('.sidebar').animate({right: '0px'}, 750, function() {
+      $('.filter, .main, .nav').css('opacity', '0.5');
+    });
+  }
+
+  // add word validation
+  var isWord = false;
+  var hasDef = false;
+  var dne = false;
+
+  $('#word').on('blur', function() {
+    var word = $(this).val().trim();
+    var currentUrl = window.location.origin;
+    var data = {type: 'validate', word: word};
+
+    $.post(currentUrl, data).then(function(response) {
+      console.log(response);
+      if(!response) {
+        $('#formError').html(word+' already exists!').removeClass('disable');
+        $('#addButton').attr('disabled', 'disabled');
+        return false;
+      } else {
+        dne = true;
+        $('#formError').addClass('disable');
+        if(isWord && hasDef && dne) {
+          $('#addButton').removeAttr('disabled');
+        } else {
+          $('#addButton').attr('disabled', 'disabled');
+        }
+      }
+    })
+
+    $.ajax({
+      url: 'https://wordsapiv1.p.mashape.com/words/'+word+'/definitions',
+      method: 'GET',
+      beforeSend: function(xhr){xhr.setRequestHeader('X-Mashape-Key', 'gMOuYDtbPVmshXbyfdvdY5QxS77qp1zwbX1jsnLdvVsABNFARQ')},
+      statusCode: {
+        404: function() {
+          $('#formError').html('Oops! '+word+' is not a valid word.').removeClass('disable');
+          isWord = false;
+          $('#addButton').attr('disabled', 'disabled');
+        }
+      }
+    }).done(function(response) {
+      if(typeof response == 'object') {
+        isWord = true;
+      }
+
+      if(isWord && hasDef && dne) {
+        $('#addButton').removeAttr('disabled');
+      } else {
+        $('#addButton').attr('disabled', 'disabled');
+      }
+
+      if(dne) {
+        $('#formError').addClass('disable');
+      }
+    })
+  })
+
+  $('#definition').on('blur', function() {
+    if($(this).val() != '') {
+      hasDef = true;
+    } else {
+      hasDef = false;
+    }
+    if(isWord && hasDef && dne) {
+      $('#addButton').removeAttr('disabled');
+    } else {
+      $('#addButton').attr('disabled', 'disabled');
+    }
+  })
+
+  // add word submit button
+  $('#addButton').on('click', function() {
+    var currentUrl = window.location.origin;
+    var data = {
+      type: 'add',
+      word: $('#word').val().trim(),
+      definition: $('#definition').val().trim(),
+      wordType: $('#wordType').val()
+    }
+
+    $.post(currentUrl, data).then(function(response) {
+      console.log(response);
+      $('#addForm').addClass('disable');
+      $('#wordReview').removeClass('disable');
+      $('#wordReview .card-title').html(response.word);
+      $('#wordReview .type').html(response.type);
+      $('#wordReview .definition').html(response.definition);
+      setTimeout(function() {
+        $('.sidebar').animate({right: '-50%'}, 750, function() {
+          $('.filter, .main, .nav').css('opacity', '1');
+        });
+        $('.sidebar').fadeOut(750, function() {
+          $('#wordReview').addClass('disable');
+          $('#addForm').removeClass('disable');
+          $('#word').val('');
+          $('#definition').val('');
+        });
+      }, 3000);
+    })
   })
 
 
