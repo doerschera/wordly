@@ -1,4 +1,4 @@
-var orm = requier('../config/orm.js');
+var orm = require('../config/orm.js');
 
 var model = {
   selectAll: function(callback) {
@@ -8,6 +8,11 @@ var model = {
   },
   selectType: function(type, callback) {
     orm.selectType('words', {type: type}, function(result) {
+      callback(result);
+    })
+  },
+  filterMany: function(condition, callback) {
+    orm.filterMany('words', condition, function(result) {
       callback(result);
     })
   },
@@ -27,3 +32,5 @@ var model = {
     })
   }
 }
+
+module.exports = model;

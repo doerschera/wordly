@@ -24,6 +24,19 @@ function objToSql(object) {
 	return set.toString();
 }
 
+function printOr(array) {
+	var conditions = []
+	array.forEach(function(item, i) {
+    if(i < (array.length-1)) {
+    conditions.push('type='+item+' OR');
+  } else {
+    conditions.push('type='+item);
+  }
+	})
+
+	console.log(conditions.toString());
+}
+
 var orm = {
   selectAll: function(table, callback) {
     var query= 'SELECT * FROM '+table;
@@ -39,6 +52,15 @@ var orm = {
       callback(result);
     })
   },
+	filterMany: function(table, condition, callback) {
+		console.log(condition);
+		var query= 'SELECT * FROM '+table+' WHERE'+printOr(condition);
+
+    connection.query(query, function(err, result) {
+      if(err) throw err;
+      callback(result);
+    })
+	},
   update: function(table, set, condition, callback) {
     var setValues = objToSql(set);
     var query = 'UPDATE '+table+' SET '+setValues+'WHERE ?';

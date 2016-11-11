@@ -2,7 +2,8 @@
 body {
   font-family: "Cormorant Garamond", serif;
   font-weight: 400;
-  letter-spacing: 1px; }
+  letter-spacing: 1px;
+  background-image: url("images/subtle_dots.png"); }
 
 .center {
   text-align: center; }
@@ -20,8 +21,9 @@ body {
   display: inline-block; }
 
 .main {
-  padding: 50px;
-  margin-top: 120px; }
+  padding-top: 120px !important;
+  height: 100vh;
+  overflow: auto; }
 
 .title {
   font-family: "Lobster Two", Helvetica, serif; }
@@ -84,7 +86,8 @@ i {
 #filter {
   position: relative;
   top: 70px;
-  width: 100%; }
+  width: 100%;
+  background-color: white; }
 
 button {
   border: solid 2px #666666;

@@ -40,7 +40,19 @@ $(document).ready(function() {
   })
 
   // sidebar animation
-  $('#favorites, #add').on('click', function() {
+  var currentUrl = window.location.origin;
+  $('#add').on('click', function() {
+    $('#addForm').removeClass('disable');
+    $('#favoriteWords').addClass('disable');
+    $('.sidebar').fadeIn(750);
+    $('.sidebar').animate({right: '0px'}, 750, function() {
+      $('.filter, .main, .nav').css('opacity', '0.5');
+    });
+  })
+
+  $('#favorites').on('click', function() {
+    $('#favoriteWords').removeClass('disable');
+    $('#addForm').addClass('disable');
     $('.sidebar').fadeIn(750);
     $('.sidebar').animate({right: '0px'}, 750, function() {
       $('.filter, .main, .nav').css('opacity', '0.5');
@@ -53,5 +65,6 @@ $(document).ready(function() {
     });
     $('.sidebar').fadeOut(750);
   })
+
 
 })
