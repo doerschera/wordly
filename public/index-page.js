@@ -163,5 +163,10 @@ $(document).ready(function() {
     })
   })
 
+  // like button
+  $('.heart').on('click', function() {
+    var id = $(this).attr('id');
+    console.log(id);
+  })
 
 })

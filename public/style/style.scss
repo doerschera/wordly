@@ -143,9 +143,7 @@ button {
 .card .card-content {
   p:nth-child(even) {
     color: #9e9e9e;
-  }
-  p:nth-child(odd) {
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 
@@ -197,6 +195,10 @@ select {
 
 .edit {
   margin-right: 10px;
+}
+
+.counter {
+  margin-top: 0;
 }
 
 #addButton, #doneButton {
