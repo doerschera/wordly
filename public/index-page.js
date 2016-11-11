@@ -67,10 +67,29 @@ $(document).ready(function() {
   // add word validation
   var isWord = false;
   var hasDef = false;
+  var dne = false;
 
   $('#word').on('blur', function() {
     var word = $(this).val().trim();
-    console.log(word);
+    var currentUrl = window.location.origin;
+    var data = {type: 'validate', word: word};
+
+    $.post(currentUrl, data).then(function(response) {
+      console.log(response);
+      if(!response) {
+        $('#formError').html(word+' already exists!').removeClass('disable');
+        $('#addButton').attr('disabled', 'disabled');
+        return false;
+      } else {
+        dne = true;
+        $('#formError').addClass('disable');
+        if(isWord && hasDef && dne) {
+          $('#addButton').removeAttr('disabled');
+        } else {
+          $('#addButton').attr('disabled', 'disabled');
+        }
+      }
+    })
 
     $.ajax({
       url: 'https://wordsapiv1.p.mashape.com/words/'+word+'/definitions',
@@ -84,16 +103,18 @@ $(document).ready(function() {
         }
       }
     }).done(function(response) {
-      $('#formError').addClass('disable');
-      
       if(typeof response == 'object') {
         isWord = true;
       }
 
-      if(isWord && hasDef) {
+      if(isWord && hasDef && dne) {
         $('#addButton').removeAttr('disabled');
       } else {
         $('#addButton').attr('disabled', 'disabled');
+      }
+
+      if(dne) {
+        $('#formError').addClass('disable');
       }
     })
   })
@@ -104,11 +125,43 @@ $(document).ready(function() {
     } else {
       hasDef = false;
     }
-    if(isWord && hasDef) {
+    if(isWord && hasDef && dne) {
       $('#addButton').removeAttr('disabled');
     } else {
       $('#addButton').attr('disabled', 'disabled');
     }
   })
+
+  // add word submit button
+  $('#addButton').on('click', function() {
+    var currentUrl = window.location.origin;
+    var data = {
+      type: 'add',
+      word: $('#word').val().trim(),
+      definition: $('#definition').val().trim(),
+      wordType: $('#wordType').val()
+    }
+
+    $.post(currentUrl, data).then(function(response) {
+      console.log(response);
+      $('#addForm').addClass('disable');
+      $('#wordReview').removeClass('disable');
+      $('#wordReview .card-title').html(response.word);
+      $('#wordReview .type').html(response.type);
+      $('#wordReview .definition').html(response.definition);
+      setTimeout(function() {
+        $('.sidebar').animate({right: '-50%'}, 750, function() {
+          $('.filter, .main, .nav').css('opacity', '1');
+        });
+        $('.sidebar').fadeOut(750, function() {
+          $('#wordReview').addClass('disable');
+          $('#addForm').removeClass('disable');
+          $('#word').val('');
+          $('#definition').val('');
+        });
+      }, 3000);
+    })
+  })
+
 
 })

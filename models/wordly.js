@@ -6,8 +6,10 @@ var model = {
       callback(result);
     })
   },
-  selectType: function(type, callback) {
-    orm.selectType('words', {type: type}, function(result) {
+  selectType: function(col, type, callback) {
+    var condition = {};
+    condition[col] = type;
+    orm.selectType('words', condition, function(result) {
       callback(result);
     })
   },
@@ -22,7 +24,7 @@ var model = {
     })
   },
   addWord: function(values, callback) {
-    orm.add('words', ['word', 'defintion', 'type', 'likes'], values, function(result) {
+    orm.add('words', ['word', 'definition', 'type', 'likes'], values, function(result) {
       callback(result);
     })
   },

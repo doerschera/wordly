@@ -59,54 +59,49 @@
     <div class="disable" id="addForm">
       <h3 class="title">Submit a word.</h3>
       <div class="add-word">
-        <form class="">
+        <form class="" action="javascript:void(0);">
           <div class="">
             <label for="word">Enter your word:</label>
-            <input type="text" name="add" value="" id="word">
+            <input type="text"value="" id="word">
           </div>
           <div class="">
             <label for="definition">Add a breif definition:</label>
-            <input type="text" name="add" value="" id="definition">
+            <input type="text"value="" id="definition">
           </div>
           <div class="">
             <label for="wordType">Select word type:</label>
-            <select class="browser-default" id="wordType" name="add">
+            <select class="browser-default" id="wordType">
               <option value="adjective">adjective</option>
               <option value="adverb">adverb</option>
               <option value="noun">noun</option>
               <option value="verb">verb</option>
             </select>
           </div>
-          <button type="button" name="add" id="addButton" disabled="true">submit</button>
+          <button id="addButton" disabled="disable">submit</button>
         </form>
-        <p class="disable" id="formError">
+        <p class="disabled" id="formError">
 
         </p>
       </div>
     </div>
 
     <!-- word update delete -->
-    <div class="disable">
+    <div class="disable" id="wordReview">
       <h3 class="title">You've added:</h3>
       <div class="card add-card">
         <div class="card-content">
-          <span class="card-title">Lilt</span>
+          <span class="card-title"></span>
           <p class="type">
-            noun
+
           </p>
-          <p class="defintion">
-            cheerful or buoyant song or movement
+          <p class="definition">
+
           </p>
         </div>
       </div>
-      <ul class="edit-new no-margin">
-        <li>edit</li>
-        <li>delete</li>
-      </ul>
-      <button type="button" name="button" id="doneButton">done</button>
     </div>
-    <!-- Favorite Words -->
 
+    <!-- Favorite Words -->
     <div class='disable' id="favoriteWords">
       <h3 class="title">Favorites.</h3>
       <div class="card">
