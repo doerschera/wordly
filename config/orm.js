@@ -63,7 +63,7 @@ var orm = {
 	},
   update: function(table, set, condition, callback) {
     var setValues = objToSql(set);
-    var query = 'UPDATE '+table+' SET '+setValues+'WHERE ?';
+    var query = 'UPDATE '+table+' SET '+setValues+' WHERE ?';
     connection.query(query, condition, function(err, result) {
       if(err) throw err;
       callback(result);
