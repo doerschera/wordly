@@ -64,5 +64,51 @@ $(document).ready(function() {
     });
   }
 
+  // add word validation
+  var isWord = false;
+  var hasDef = false;
+
+  $('#word').on('blur', function() {
+    var word = $(this).val().trim();
+    console.log(word);
+
+    $.ajax({
+      url: 'https://wordsapiv1.p.mashape.com/words/'+word+'/definitions',
+      method: 'GET',
+      beforeSend: function(xhr){xhr.setRequestHeader('X-Mashape-Key', 'gMOuYDtbPVmshXbyfdvdY5QxS77qp1zwbX1jsnLdvVsABNFARQ')},
+      statusCode: {
+        404: function() {
+          $('#formError').html('Oops! '+word+' is not a valid word.').removeClass('disable');
+          isWord = false;
+          $('#addButton').attr('disabled', 'disabled');
+        }
+      }
+    }).done(function(response) {
+      $('#formError').addClass('disable');
+      
+      if(typeof response == 'object') {
+        isWord = true;
+      }
+
+      if(isWord && hasDef) {
+        $('#addButton').removeAttr('disabled');
+      } else {
+        $('#addButton').attr('disabled', 'disabled');
+      }
+    })
+  })
+
+  $('#definition').on('blur', function() {
+    if($(this).val() != '') {
+      hasDef = true;
+    } else {
+      hasDef = false;
+    }
+    if(isWord && hasDef) {
+      $('#addButton').removeAttr('disabled');
+    } else {
+      $('#addButton').attr('disabled', 'disabled');
+    }
+  })
 
 })

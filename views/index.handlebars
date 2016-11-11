@@ -62,25 +62,25 @@
         <form class="">
           <div class="">
             <label for="word">Enter your word:</label>
-            <input type="text" name="name" value="" id="word">
+            <input type="text" name="add" value="" id="word">
           </div>
           <div class="">
             <label for="definition">Add a breif definition:</label>
-            <input type="text" name="name" value="" id="definition">
+            <input type="text" name="add" value="" id="definition">
           </div>
           <div class="">
             <label for="wordType">Select word type:</label>
-            <select class="browser-default" id="wordType">
+            <select class="browser-default" id="wordType" name="add">
               <option value="adjective">adjective</option>
               <option value="adverb">adverb</option>
               <option value="noun">noun</option>
               <option value="verb">verb</option>
             </select>
           </div>
-          <button type="button" name="button" id="addButton">submit</button>
+          <button type="button" name="add" id="addButton" disabled="true">submit</button>
         </form>
-        <p id="formError">
-          error message
+        <p class="disable" id="formError">
+
         </p>
       </div>
     </div>
