@@ -40,9 +40,9 @@ function printOr(col, array) {
 	var conditions = []
 	array.forEach(function(item, i) {
     if(i < (array.length-1)) {
-    conditions.push(col+'='+item+' OR');
+    conditions.push(col+"='"+item+"' OR");
   } else {
-    conditions.push(col+'='+item);
+    conditions.push(col+"='"+item+"'");
   }
 	})
 

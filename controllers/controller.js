@@ -68,7 +68,7 @@ router.post('/filter', function(req, res) {
   var wordType = req.body.filter;
 
   if(typeof wordType != 'string') {
-    model.filterMany(type, 'type', function(result) {
+    model.filterMany(wordType, 'type', function(result) {
       var data = {words: result};
       res.render('index', data);
     })
