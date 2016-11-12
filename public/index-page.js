@@ -22,6 +22,13 @@ $(document).ready(function() {
     $(this).html('favorite');
   })
 
+  // color hearts from local storage
+  var pastFavorites = localStorage;
+  for(var word in pastFavorites) {
+    var id = '#like'+word;
+    $(id).html('favorite').off('click').css('cursor', 'auto');
+  }
+
   // navigation buttons
   $('#favorites').on('mouseenter', function() {
     $('#buttonInfo > p').html('view favorites');
