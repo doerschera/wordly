@@ -196,7 +196,7 @@ $(document).ready(function() {
 
   $('.heart').on('click', function() {
     var id = $(this).attr('id');
-    id.replace(/^(.*?)\d/, '');
+    id.replace(/like/g, '');
     var counter = $(this).siblings('.counter');
     console.log(id);
     var data = {
