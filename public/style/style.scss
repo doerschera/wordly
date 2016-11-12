@@ -225,3 +225,9 @@ select {
 #actionMessage {
   margin-top: 100px;
 }
+
+#favoriteWords {
+  .card {
+    min-width: 300px; 
+  }
+}

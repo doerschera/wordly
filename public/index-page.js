@@ -22,6 +22,13 @@ $(document).ready(function() {
     $(this).html('favorite');
   })
 
+  // color hearts from local storage
+  var pastFavorites = localStorage;
+  for(var word in pastFavorites) {
+    var id = '#like'+word;
+    $(id).html('favorite').off('click').css('cursor', 'auto');
+  }
+
   // navigation buttons
   $('#favorites').on('mouseenter', function() {
     $('#buttonInfo > p').html('view favorites');
@@ -46,6 +53,28 @@ $(document).ready(function() {
 
   $('#favorites').on('click', function() {
     sidebar('#favoriteWords', '#addForm');
+    var favorites = [];
+    for(var word in localStorage) {
+      favorites.push(word);
+    }
+    var data = {
+      'type': 'favorites',
+      'favorites': favorites
+    }
+
+    $.post('/', data).then(function(result) {
+      console.log(result);
+      $('#favoriteCards').empty();
+      result.forEach(function(word){
+        var card = $('<div class="card"></div>');
+        var cardContent = $('<div class="card-content"></div>');
+        cardContent.append('<span class="card-title">'+word.word+'</span>');
+        cardContent.append('<p class="type">'+word.type+'</p>');
+        cardContent.append('<p class="definition">'+word.definition+'</p>');
+        card.append(cardContent);
+        $('#favoriteCards').append(card);
+      })
+    })
   })
 
   $(document).on('click', '#cards', function() {
@@ -163,6 +192,8 @@ $(document).ready(function() {
   })
 
   // like button
+  var favorites = {};
+
   $('.heart').on('click', function() {
     var id = $(this).attr('id');
     var counter = $(this).siblings('.counter');
@@ -171,6 +202,13 @@ $(document).ready(function() {
       type: 'like',
       id: id
     }
+    // local storage
+    if(localStorage.wordly === undefined) {
+      localStorage.setItem(id, id);
+    }
+    console.log(localStorage);
+
+    // server request
     $.post(currentUrl, data).then(function(response) {
       console.log(response);
       counter.html(response.likes);

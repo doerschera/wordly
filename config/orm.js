@@ -17,6 +17,18 @@ function objToSql(object) {
 
 	for (var key in object) {
 		if (object.hasOwnProperty(key)) {
+			set.push(key + "=" +object[key]);
+		}
+	}
+
+	return set.toString();
+}
+
+function objToSqlString(object) {
+	var set = [];
+
+	for (var key in object) {
+		if (object.hasOwnProperty(key)) {
 			set.push(key + "=" +"'"+object[key]+"'");
 		}
 	}
@@ -24,17 +36,17 @@ function objToSql(object) {
 	return set.toString();
 }
 
-function printOr(array) {
+function printOr(col, array) {
 	var conditions = []
 	array.forEach(function(item, i) {
     if(i < (array.length-1)) {
-    conditions.push('type='+item+' OR');
+    conditions.push(col+"='"+item+"' OR");
   } else {
-    conditions.push('type='+item);
+    conditions.push(col+"='"+item+"'");
   }
 	})
 
-	console.log(conditions.toString());
+	return conditions.join(" ");
 }
 
 var orm = {
@@ -52,10 +64,10 @@ var orm = {
       callback(result);
     })
   },
-	filterMany: function(table, condition, callback) {
-		console.log(condition);
-		var query= 'SELECT * FROM '+table+' WHERE'+printOr(condition);
-
+	filterMany: function(table, array, col, callback) {
+		console.log(array);
+		var query= 'SELECT * FROM '+table+' WHERE '+printOr(col, array);
+		console.log(query);
     connection.query(query, function(err, result) {
       if(err) throw err;
       callback(result);
@@ -63,6 +75,15 @@ var orm = {
 	},
   update: function(table, set, condition, callback) {
     var setValues = objToSql(set);
+    var query = 'UPDATE '+table+' SET '+setValues+' WHERE ?';
+		console.log(query);
+    connection.query(query, condition, function(err, result) {
+      if(err) throw err;
+      callback(result);
+    })
+  },
+	updateString: function(table, set, condition, callback) {
+    var setValues = objToSqlString(set);
     var query = 'UPDATE '+table+' SET '+setValues+' WHERE ?';
 		console.log(query);
     connection.query(query, condition, function(err, result) {
