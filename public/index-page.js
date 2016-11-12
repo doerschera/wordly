@@ -19,14 +19,15 @@ $(document).ready(function() {
 
   // favorite button color
   $('.heart').on('click', function() {
-    $(this).html('favorite');
+    var id = '#'+$(this).attr('id');
+    $('.heart '+id).html('favorite');
   })
 
   // color hearts from local storage
   var pastFavorites = localStorage;
   for(var word in pastFavorites) {
-    var id = '#like'+word;
-    $(id).html('favorite').off('click').css('cursor', 'auto');
+    var id = '#'+word;
+    $('.heart '+id).html('favorite').off('click').css('cursor', 'auto');
   }
 
   // navigation buttons
@@ -196,7 +197,6 @@ $(document).ready(function() {
 
   $('.heart').on('click', function() {
     var id = $(this).attr('id');
-    id.replace(/\D/g, '');
     console.log(id);
     var counter = $(this).siblings('.counter');
     console.log(id);
