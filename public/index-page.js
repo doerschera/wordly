@@ -46,6 +46,18 @@ $(document).ready(function() {
 
   $('#favorites').on('click', function() {
     sidebar('#favoriteWords', '#addForm');
+    var favorites = [];
+    for(var word in localStorage) {
+      favorites.push(word);
+    }
+    var data = {
+      'type': 'favorites',
+      'favorites': favorites
+    }
+
+    $.post('/', data).then(function(result) {
+      console.log(result);
+    })
   })
 
   $(document).on('click', '#cards', function() {
@@ -163,7 +175,7 @@ $(document).ready(function() {
   })
 
   // like button
-  var favorites = [];
+  var favorites = {};
 
   $('.heart').on('click', function() {
     var id = $(this).attr('id');
@@ -174,7 +186,9 @@ $(document).ready(function() {
       id: id
     }
     // local storage
-    localStorage.setItem(id, id);
+    if(localStorage.wordly === undefined) {
+      localStorage.setItem(id, id);
+    }
     console.log(localStorage);
 
     // server request

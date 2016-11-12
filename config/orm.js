@@ -36,17 +36,17 @@ function objToSqlString(object) {
 	return set.toString();
 }
 
-function printOr(array) {
+function printOr(col, array) {
 	var conditions = []
 	array.forEach(function(item, i) {
     if(i < (array.length-1)) {
-    conditions.push('type='+item+' OR');
+    conditions.push(col+'='+item+' OR');
   } else {
-    conditions.push('type='+item);
+    conditions.push(col+'='+item);
   }
 	})
 
-	console.log(conditions.toString());
+	return conditions.join(" ");
 }
 
 var orm = {
@@ -64,10 +64,10 @@ var orm = {
       callback(result);
     })
   },
-	filterMany: function(table, condition, callback) {
-		console.log(condition);
-		var query= 'SELECT * FROM '+table+' WHERE'+printOr(condition);
-
+	filterMany: function(table, array, col, callback) {
+		console.log(array);
+		var query= 'SELECT * FROM '+table+' WHERE '+printOr(col, array);
+		console.log(query);
     connection.query(query, function(err, result) {
       if(err) throw err;
       callback(result);

@@ -13,8 +13,8 @@ var model = {
       callback(result);
     })
   },
-  filterMany: function(condition, callback) {
-    orm.filterMany('words', condition, function(result) {
+  filterMany: function(array, col, callback) {
+    orm.filterMany('words', array, col, function(result) {
       callback(result);
     })
   },

@@ -44,13 +44,17 @@ router.post('/', function(req, res) {
         res.send(result[0]);
       })
     })
+  } else if(data.type = 'favorites') {
+    var favorites = data['favorites[]'];
+    model.filterMany(favorites, 'id', function(result) {
+      res.send(result);
+    })
   }
 })
 
 router.post('/edit', function (req, res) {
   var id = req.body.id;
   model.selectType('id', id, function(result) {
-    console.log(result);
     edit = result[0];
     res.send(true);
   })
@@ -64,7 +68,7 @@ router.post('/filter', function(req, res) {
   var wordType = req.body.filter;
 
   if(typeof wordType != 'string') {
-    model.filterMany(type, function(result) {
+    model.filterMany(type, 'type', function(result) {
       var data = {words: result};
       res.render('index', data);
     })
