@@ -57,6 +57,16 @@ $(document).ready(function() {
 
     $.post('/', data).then(function(result) {
       console.log(result);
+      $('#favoriteCards').empty();
+      result.forEach(function(word){
+        var card = $('<div class="card"></div>');
+        var cardContent = $('<div class="card-content"></div>');
+        cardContent.append('<span class="card-title">'+word.word+'</span>');
+        cardContent.append('<p class="type">'+word.type+'</p>');
+        cardContent.append('<p class="definition">'+word.definition+'</p>');
+        card.append(cardContent);
+        $('#favoriteCards').append(card);
+      })
     })
   })
 
