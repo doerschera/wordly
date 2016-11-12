@@ -185,6 +185,8 @@ select {
 
 #actionMessage {
   margin-top: 100px; }
+  #actionMessage .card-title {
+    text-transform: none; }
 
 #favoriteWords .card {
   min-width: 300px; }
