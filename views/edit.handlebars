@@ -31,6 +31,7 @@
         <button id="editButton">submit</button>
       </form>
       <form action="/edit/delete/{{id}}?_method=DELETE" method="POST" id="deleteForm">
+        <input type="text" value="{{word}}" class="disable" name="delete">
         <button id="deleteButton">delete word</button>
       </form>
     </div>

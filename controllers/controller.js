@@ -91,6 +91,17 @@ router.put('/edit/update/:id', function(req, res) {
   })
 })
 
+router.delete('/edit/delete/:id', function(req, res) {
+  var id = req.params.id;
+  message = {
+    word: req.body.delete,
+    action: 'deleted'
+  }
+  model.deleteWord({id: id}, function(result) {
+    res.redirect('/message')
+  })
+})
+
 router.get('/message', function(req, res) {
   console.log(message);
   res.render('message', message);
