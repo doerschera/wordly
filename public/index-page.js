@@ -163,6 +163,8 @@ $(document).ready(function() {
   })
 
   // like button
+  var favorites = [];
+
   $('.heart').on('click', function() {
     var id = $(this).attr('id');
     var counter = $(this).siblings('.counter');
@@ -171,6 +173,11 @@ $(document).ready(function() {
       type: 'like',
       id: id
     }
+    // local storage
+    localStorage.setItem(id, id);
+    console.log(localStorage);
+
+    // server request
     $.post(currentUrl, data).then(function(response) {
       console.log(response);
       counter.html(response.likes);

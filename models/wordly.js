@@ -24,7 +24,7 @@ var model = {
     })
   },
   update: function(set, condition, callback) {
-    orm.update('words', set, condition, function(result) {
+    orm.updateString('words', set, condition, function(result) {
       callback(result);
     })
   },

@@ -17,6 +17,18 @@ function objToSql(object) {
 
 	for (var key in object) {
 		if (object.hasOwnProperty(key)) {
+			set.push(key + "=" +object[key]);
+		}
+	}
+
+	return set.toString();
+}
+
+function objToSqlString(object) {
+	var set = [];
+
+	for (var key in object) {
+		if (object.hasOwnProperty(key)) {
 			set.push(key + "=" +"'"+object[key]+"'");
 		}
 	}
@@ -63,6 +75,15 @@ var orm = {
 	},
   update: function(table, set, condition, callback) {
     var setValues = objToSql(set);
+    var query = 'UPDATE '+table+' SET '+setValues+' WHERE ?';
+		console.log(query);
+    connection.query(query, condition, function(err, result) {
+      if(err) throw err;
+      callback(result);
+    })
+  },
+	updateString: function(table, set, condition, callback) {
+    var setValues = objToSqlString(set);
     var query = 'UPDATE '+table+' SET '+setValues+' WHERE ?';
 		console.log(query);
     connection.query(query, condition, function(err, result) {
