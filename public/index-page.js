@@ -20,6 +20,7 @@ $(document).ready(function() {
   // favorite button color
   $('.heart').on('click', function() {
     var id = '#'+$(this).attr('id');
+    console.log(id);
     $(id+'.heart').html('favorite');
   })
 
