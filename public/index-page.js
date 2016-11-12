@@ -197,6 +197,7 @@ $(document).ready(function() {
   $('.heart').on('click', function() {
     var id = $(this).attr('id');
     id.replace(/like/g, '');
+    console.log(id);
     var counter = $(this).siblings('.counter');
     console.log(id);
     var data = {
@@ -204,9 +205,8 @@ $(document).ready(function() {
       id: id
     }
     // local storage
-    if(localStorage.wordly === undefined) {
-      localStorage.setItem(id, id);
-    }
+    localStorage.setItem(id, id);
+
     console.log(localStorage);
 
     // server request
