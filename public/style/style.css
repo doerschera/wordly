@@ -158,8 +158,12 @@ select {
 .counter {
   margin-top: 0; }
 
-#addButton, #editButton, #deleteButton {
+#addButton, #editButton {
   border: solid 1px black; }
+
+#deleteButton {
+  border: solid 1px #9e9e9e;
+  color: #9e9e9e; }
 
 #edit {
   margin-top: 100px;
@@ -170,5 +174,8 @@ select {
   position: relative;
   bottom: 28px;
   left: 75px; }
+
+#actionMessage {
+  margin-top: 100px; }
 
 /*# sourceMappingURL=style.css.map */

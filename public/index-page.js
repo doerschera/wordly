@@ -188,4 +188,11 @@ $(document).ready(function() {
     })
   })
 
+  // action message redirect
+  if(window.location == currentUrl+'/message') {
+    setTimeout(function() {
+      window.location = currentUrl;
+    }, 3000);
+  }
+
 })

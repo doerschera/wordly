@@ -8,6 +8,7 @@ var sidebar = {
 }
 var currentData;
 var edit;
+var message;
 
 router.get('/', function(req, res) {
   model.selectAll(function(result) {
@@ -74,6 +75,25 @@ router.post('/filter', function(req, res) {
     var data = {words: result};
     res.render('index', data);
   })
+})
+
+router.put('/edit/update/:id', function(req, res) {
+  var id = {id: req.params.id}
+  var data = {
+    word: req.body.edit[0],
+    definition: req.body.edit[1],
+    type: req.body.edit[2]
+  };
+  console.log(id, data);
+  message = {word: data.word, action: 'updated'}
+  model.update(data, id, function(response) {
+    res.redirect('/message');
+  })
+})
+
+router.get('/message', function(req, res) {
+  console.log(message);
+  res.render('message', message);
 })
 
 

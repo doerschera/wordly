@@ -10,28 +10,28 @@
   <div class="row">
     <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 z-depth-3" id="edit">
       <h3 class="title">Edit a word.</h3>
-      <form class="">
+      <form action="/edit/update/{{id}}?_method=PUT" method="POST">
         <div class="">
           <label for="editWord">Word:</label>
-          <input type="text"value="{{word}}" id="editWord">
+          <input type="text"value="{{word}}" id="editWord" name="edit">
         </div>
         <div class="">
           <label for="editDefinition">Breif definition:</label>
-          <input type="text"value="{{definition}}" id="editDefinition">
+          <input type="text"value="{{definition}}" id="editDefinition" name="edit">
         </div>
         <div class="">
           <label for="editWordType">Word type:</label>
-          <select class="browser-default" id="editWordType">
+          <select class="browser-default" id="editWordType" name="edit">
             <option value="adjective">adjective</option>
             <option value="adverb">adverb</option>
             <option value="noun">noun</option>
             <option value="verb">verb</option>
           </select>
         </div>
-        <button id="editButton" disabled="disable">submit</button>
+        <button id="editButton">submit</button>
       </form>
-      <form id="deleteForm">
-        <button id="deleteButton" disabled="disable">delete word</button>
+      <form action="/edit/delete/{{id}}?_method=DELETE" method="POST" id="deleteForm">
+        <button id="deleteButton">delete word</button>
       </form>
     </div>
   </div>
