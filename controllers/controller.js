@@ -12,7 +12,17 @@ var message;
 
 router.get('/', function(req, res) {
   model.selectAll(function(result) {
-    var data = {words: result}
+    var randomOrder = [];
+    randomize(result);
+    function randomize(array) {
+      var index = Math.floor(Math.random()*array.length);
+      randomOrder.push(array[index]);
+      result.splice(index, 1);
+      if((array.length-1) > 0) {
+        randomize(array);
+      }
+    }
+    var data = {words: randomOrder}
     res.render('index', data);
   })
 })
@@ -69,14 +79,34 @@ router.post('/filter', function(req, res) {
 
   if(typeof wordType != 'string') {
     model.filterMany(wordType, 'type', function(result) {
-      var data = {words: result};
+      var randomOrder = [];
+      randomize(result);
+      function randomize(array) {
+        var index = Math.floor(Math.random()*array.length);
+        randomOrder.push(array[index]);
+        result.splice(index, 1);
+        if((array.length-1) > 0) {
+          randomize(array);
+        }
+      }
+      var data = {words: randomOrder}
       res.render('index', data);
     })
     return false;
   }
 
   model.selectType('type', wordType, function(result) {
-    var data = {words: result};
+    var randomOrder = [];
+    randomize(result);
+    function randomize(array) {
+      var index = Math.floor(Math.random()*array.length);
+      randomOrder.push(array[index]);
+      result.splice(index, 1);
+      if((array.length-1) > 0) {
+        randomize(array);
+      }
+    }
+    var data = {words: randomOrder}
     res.render('index', data);
   })
 })
