@@ -7,27 +7,11 @@ var sidebar = {
   favorties: false
 }
 var currentData;
+var edit;
 
 router.get('/', function(req, res) {
   model.selectAll(function(result) {
     var data = {words: result}
-    res.render('index', data);
-  })
-})
-
-router.post('/filter', function(req, res) {
-  var wordType = req.body.filter;
-
-  if(typeof wordType != 'string') {
-    model.filterMany(type, function(result) {
-      var data = {words: result};
-      res.render('index', data);
-    })
-    return false;
-  }
-
-  model.selectType('type', wordType, function(result) {
-    var data = {words: result};
     res.render('index', data);
   })
 })
@@ -62,7 +46,35 @@ router.post('/', function(req, res) {
   }
 })
 
+router.post('/edit', function (req, res) {
+  var id = req.body.id;
+  model.selectType('id', id, function(result) {
+    console.log(result);
+    edit = result[0];
+    res.send(true);
+  })
+})
 
+router.get('/edit', function(req, res) {
+  res.render('edit', edit);
+})
+
+router.post('/filter', function(req, res) {
+  var wordType = req.body.filter;
+
+  if(typeof wordType != 'string') {
+    model.filterMany(type, function(result) {
+      var data = {words: result};
+      res.render('index', data);
+    })
+    return false;
+  }
+
+  model.selectType('type', wordType, function(result) {
+    var data = {words: result};
+    res.render('index', data);
+  })
+})
 
 
 module.exports = router;

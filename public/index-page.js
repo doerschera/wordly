@@ -177,4 +177,15 @@ $(document).ready(function() {
     })
   })
 
+  // edit button
+  $('.edit').on('click', function() {
+    var id = $(this).attr('id');
+    var data = {id: id};
+
+    $.post(currentUrl+'/edit', data).then(function(response) {
+      console.log(response);
+      window.location = currentUrl +'/edit';
+    })
+  })
+
 })
