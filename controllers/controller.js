@@ -7,27 +7,12 @@ var sidebar = {
   favorties: false
 }
 var currentData;
+var edit;
+var message;
 
 router.get('/', function(req, res) {
   model.selectAll(function(result) {
     var data = {words: result}
-    res.render('index', data);
-  })
-})
-
-router.post('/filter', function(req, res) {
-  var wordType = req.body.filter;
-
-  if(typeof wordType != 'string') {
-    model.filterMany(type, function(result) {
-      var data = {words: result};
-      res.render('index', data);
-    })
-    return false;
-  }
-
-  model.selectType('type', wordType, function(result) {
-    var data = {words: result};
     res.render('index', data);
   })
 })
@@ -62,7 +47,65 @@ router.post('/', function(req, res) {
   }
 })
 
+router.post('/edit', function (req, res) {
+  var id = req.body.id;
+  model.selectType('id', id, function(result) {
+    console.log(result);
+    edit = result[0];
+    res.send(true);
+  })
+})
 
+router.get('/edit', function(req, res) {
+  res.render('edit', edit);
+})
+
+router.post('/filter', function(req, res) {
+  var wordType = req.body.filter;
+
+  if(typeof wordType != 'string') {
+    model.filterMany(type, function(result) {
+      var data = {words: result};
+      res.render('index', data);
+    })
+    return false;
+  }
+
+  model.selectType('type', wordType, function(result) {
+    var data = {words: result};
+    res.render('index', data);
+  })
+})
+
+router.put('/edit/update/:id', function(req, res) {
+  var id = {id: req.params.id}
+  var data = {
+    word: req.body.edit[0],
+    definition: req.body.edit[1],
+    type: req.body.edit[2]
+  };
+  console.log(id, data);
+  message = {word: data.word, action: 'updated'}
+  model.update(data, id, function(response) {
+    res.redirect('/message');
+  })
+})
+
+router.delete('/edit/delete/:id', function(req, res) {
+  var id = req.params.id;
+  message = {
+    word: req.body.delete,
+    action: 'deleted'
+  }
+  model.deleteWord({id: id}, function(result) {
+    res.redirect('/message')
+  })
+})
+
+router.get('/message', function(req, res) {
+  console.log(message);
+  res.render('message', message);
+})
 
 
 module.exports = router;

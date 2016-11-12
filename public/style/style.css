@@ -158,10 +158,24 @@ select {
 .counter {
   margin-top: 0; }
 
-#addButton, #doneButton {
+#addButton, #editButton {
   border: solid 1px black; }
 
-#doneButton {
-  margin-top: 50px; }
+#deleteButton {
+  border: solid 1px #9e9e9e;
+  color: #9e9e9e; }
+
+#edit {
+  margin-top: 100px;
+  background-color: white;
+  padding: 40px; }
+
+#deleteForm {
+  position: relative;
+  bottom: 28px;
+  left: 75px; }
+
+#actionMessage {
+  margin-top: 100px; }
 
 /*# sourceMappingURL=style.css.map */

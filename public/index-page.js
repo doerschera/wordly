@@ -177,4 +177,22 @@ $(document).ready(function() {
     })
   })
 
+  // edit button
+  $('.edit').on('click', function() {
+    var id = $(this).attr('id');
+    var data = {id: id};
+
+    $.post(currentUrl+'/edit', data).then(function(response) {
+      console.log(response);
+      window.location = currentUrl +'/edit';
+    })
+  })
+
+  // action message redirect
+  if(window.location == currentUrl+'/message') {
+    setTimeout(function() {
+      window.location = currentUrl;
+    }, 3000);
+  }
+
 })

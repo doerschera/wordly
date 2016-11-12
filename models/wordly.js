@@ -23,6 +23,11 @@ var model = {
       callback(result);
     })
   },
+  update: function(set, condition, callback) {
+    orm.update('words', set, condition, function(result) {
+      callback(result);
+    })
+  },
   addWord: function(values, callback) {
     orm.add('words', ['word', 'definition', 'type', 'likes'], values, function(result) {
       callback(result);
